@@ -48,12 +48,12 @@ func (collector *qiniuMetricsCollector) Collect(ch chan<- prometheus.Metric) {
 	var wg = sync.WaitGroup{}
 	for _, bucketName := range bucketsInfo {
 		wg.Add(6)
-		go collector.collectSpaceInfo("count", bucketName, bucketManager, ch, &wg)
-		go collector.collectCountInfo("space", bucketName, bucketManager, ch, &wg)
-		go collector.collectSpaceInfo("count_line", bucketName, bucketManager, ch, &wg)
-		go collector.collectCountInfo("space_line", bucketName, bucketManager, ch, &wg)
-		go collector.collectSpaceInfo("count_archive", bucketName, bucketManager, ch, &wg)
-		go collector.collectCountInfo("space_archive", bucketName, bucketManager, ch, &wg)
+		go collector.collectSpaceInfo("space", bucketName, bucketManager, ch, &wg)
+		go collector.collectCountInfo("count", bucketName, bucketManager, ch, &wg)
+		go collector.collectSpaceInfo("space_line", bucketName, bucketManager, ch, &wg)
+		go collector.collectCountInfo("count_line", bucketName, bucketManager, ch, &wg)
+		go collector.collectSpaceInfo("space_archive", bucketName, bucketManager, ch, &wg)
+		go collector.collectCountInfo("count_archive", bucketName, bucketManager, ch, &wg)
 	}
 
 	time.Sleep(time.Second * 10)
