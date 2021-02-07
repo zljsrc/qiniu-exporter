@@ -19,6 +19,8 @@ var (
 )
 
 func main() {
+	flag.Parse()
+
 	if *qiniuAccessKey == "" {
 		log.Fatal("qiniuAccessKey can't be empty")
 		return
